@@ -1,0 +1,142 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      data-namespace-typo3-fluid="true">
+   
+<f:layout name="Default" />
+<f:section name="main">
+    <script src="{f:uri.resource(path: 'js/rd_backend.js', extensionName: 'RdComments')}"></script>
+    <link rel="stylesheet" href="{f:uri.resource(path: 'css/rd_backend.css', extensionName: 'RdComments')}" />
+    <link rel="stylesheet" href="{f:uri.resource(path: 'css/rd_min.css', extensionName: 'RdComments')}" />
+
+   <f:render partial="BackendComment/FlashMessages" />
+
+    <h1 style="text-align: center; margin-bottom: 2rem;">{f:translate(key: 'LLL:EXT:rd_comments/Resources/Private/Language/locallang.xlf:backendheader')}</h1>
+    <div class="news-container">
+        <f:if condition="{newsList}">
+            <f:then>
+                <f:for each="{newsList}" as="newsItem">
+                    <div class="news-item">
+                        <div class="news-header" data-news-id="{newsItem.uid}" tabindex="0" role="button" aria-expanded="false" aria-controls="comments-{newsItem.uid}">
+                            <h2>#{newsItem.uid} - {newsItem.title -> f:format.htmlspecialchars()}</h2>
+                            <span class="toggle-icon" id="toggle-icon-{newsItem.uid}" aria-hidden="true"></span>
+                        </div>
+                        <div class="comments-section" id="comments-{newsItem.uid}" style="display: none;">
+                            <f:if condition="{commentsByNews.{newsItem.uid}.comments}">
+                                <f:then>
+                                    <f:for each="{commentsByNews.{newsItem.uid}.comments}" as="comment">
+                                        <f:render section="RenderComment" arguments="{comment: comment, isNested: 0}" />
+                                    </f:for>
+                                </f:then>
+                                <f:else>
+                                    <p>{f:translate(key: 'LLL:EXT:rd_comments/Resources/Private/Language/locallang.xlf:warning')}</p>
+                                </f:else>
+                            </f:if>
+                        </div>
+                    </div>
+                </f:for>
+            </f:then>
+            <f:else>
+                <p>{f:translate(key: 'LLL:EXT:rd_comments/Resources/Private/Language/locallang.xlf:nonews')}</p>
+            </f:else>
+        </f:if>
+    </div>
+</f:section>
+
+<f:section name="RenderComment">
+    <div class="comment" data-comment-id="{comment.uid}">
+        <div class="comment-header">
+            <span class="comment-author">
+                {comment.username -> f:format.htmlspecialchars()} |
+                ({comment.usermail -> f:format.htmlspecialchars()})
+            </span>
+            <span class="comment-date">
+                {comment.crdate}
+            </span>
+        </div>
+        <div class="comment-content">{comment.description -> f:sanitize.html()}</div>
+        <div class="comment-actions">
+            <f:link.action action="delete" controller="BackendComment" extensionName="RdComments" arguments="{commentUid: comment.uid}" class="btn btn-danger" title="Delete">
+                <f:translate key="LLL:EXT:rd_comments/Resources/Private/Language/locallang.xlf:delete" />
+                <i class="icon-delete" aria-hidden="true"></i>
+            </f:link.action>
+            <f:if condition="{comment.replies -> f:count()} > 0">
+                <button class="toggle-replies" data-comment-id="{comment.uid}" aria-expanded="false" role="button">
+                    {f:translate(key: 'LLL:EXT:rd_comments/Resources/Private/Language/locallang.xlf:repliesbutton')}(<f:count>{comment.replies}</f:count>)
+                </button>
+            </f:if>
+        </div>
+        <f:if condition="{comment.replies}">
+            <div class="replies" id="replies-{comment.uid}" style="display: none;">
+                <f:for each="{comment.replies}" as="reply">
+                    <div class="nested-reply" data-comment-id="{reply.uid}">
+                        <div class="nested-reply-header">
+                            <span class="nested-reply-author">
+                                {reply.username -> f:format.htmlspecialchars()} |
+                                ({reply.usermail -> f:format.htmlspecialchars()})
+                            </span>
+                            <span class="nested-reply-date">
+                                {reply.crdate}
+                            </span>
+                        </div>
+                        <div class="nested-reply-content">{reply.description -> f:sanitize.html()}</div>
+                        <div class="nested-reply-actions">
+                            <f:link.action action="delete" controller="BackendComment" extensionName="RdComments" arguments="{commentUid: reply.uid}" class="btn btn-danger" title="{f:translate(key: 'LLL:EXT:rd_comments/Resources/Private/Language/locallang.xlf:delete')}">
+                                <f:translate key="LLL:EXT:rd_comments/Resources/Private/Language/locallang.xlf:delete" />
+                                <i class="icon-delete" aria-hidden="true"></i>
+                            </f:link.action>
+                            <f:if condition="{reply.replies -> f:count()} > 0">
+                                <button class="toggle-replies" data-comment-id="{reply.uid}" aria-expanded="false" role="button">
+                                    {f:translate(key: 'LLL:EXT:rd_comments/Resources/Private/Language/locallang.xlf:repliesbutton')}(<f:count>{reply.replies}</f:count>)
+                                </button>
+                            </f:if>
+                        </div>
+                        <f:if condition="{reply.replies}">
+                            <div class="replies" id="replies-{reply.uid}" style="display: none;">
+                                <f:render section="RenderNestedReplies" arguments="{replies: reply.replies, parentUsername: reply.username}" />
+                            </div>
+                        </f:if>
+                    </div>
+                </f:for>
+            </div>
+        </f:if>
+    </div>
+</f:section>
+
+<f:section name="RenderNestedReplies">
+    <f:if condition="{replies}">
+        <f:for each="{replies}" as="nestedReply">
+            <div class="nested-reply" data-comment-id="{nestedReply.uid}">
+                <div class="nested-reply-header">
+                    <span class="nested-reply-parent-author">
+                        {parentUsername -> f:format.htmlspecialchars()} 
+                        <span class="replied-label">{f:translate(key: 'LLL:EXT:rd_comments/Resources/Private/Language/locallang.xlf:replywarning')}</span>
+                    </span>
+                    <span class="nested-reply-author">
+                        {nestedReply.username -> f:format.htmlspecialchars()} |
+                        ({nestedReply.usermail -> f:format.htmlspecialchars()})
+                    </span>
+                    <span class="nested-reply-date">
+                        {nestedReply.crdate}
+                    </span>
+                </div>
+                <div class="nested-reply-content">{nestedReply.description -> f:sanitize.html()}</div>
+                <div class="nested-reply-actions">
+                    <f:link.action action="delete" controller="BackendComment" extensionName="RdComments" arguments="{commentUid: nestedReply.uid}" class="btn btn-danger" title="{f:translate(key: 'LLL:EXT:rd_comments/Resources/Private/Language/locallang.xlf:delete')}">
+                        <f:translate key="LLL:EXT:rd_comments/Resources/Private/Language/locallang.xlf:delete" />
+                        <i class="icon-delete" aria-hidden="true"></i>
+                    </f:link.action>
+                    <f:if condition="{nestedReply.replies -> f:count()} > 0">
+                        <button class="toggle-replies" data-comment-id="{nestedReply.uid}" aria-expanded="false" role="button">
+                            {f:translate(key: 'LLL:EXT:rd_comments/Resources/Private/Language/locallang.xlf:repliesbutton')}(<f:count>{nestedReply.replies}</f:count>)
+                        </button>
+                    </f:if>
+                </div>
+                <f:if condition="{nestedReply.replies}">
+                    <div class="replies" id="replies-{nestedReply.uid}" style="display: none;">
+                        <f:render section="RenderNestedReplies" arguments="{replies: nestedReply.replies, parentUsername: nestedReply.username}" />
+                    </div>
+                </f:if>
+            </div>
+        </f:for>
+    </f:if>
+</f:section>
+</html>

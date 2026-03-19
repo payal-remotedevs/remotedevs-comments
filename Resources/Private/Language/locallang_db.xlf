@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" date="2016-11-08T11:15:02Z" product-name="comments">
+		<header/>
+		<body>
+			<trans-unit id="commentplugintab.header" resname="commentplugintab.header">
+				<source>RD Comment</source> 
+			</trans-unit>
+			<trans-unit id="tx_rdcomments_domain_model_comment">
+				<source>Comment</source>
+			</trans-unit>
+			<trans-unit id="tx_rdcomments_domain_model_comment.newsComment">
+				<source>News Comment</source>
+			</trans-unit>
+			<trans-unit id="tx_rdcomments_domain_model_comment.newComments">
+				<source>Comments</source>
+			</trans-unit>
+			<trans-unit id="tx_rdcomments_domain_model_comment.newsuid">
+				<source>News UID</source>
+			</trans-unit>
+			<trans-unit id="tx_rdcomments_domain_model_comment.username">
+				<source>Name</source>
+			</trans-unit>
+			<trans-unit id="tx_rdcomments_domain_model_comment.usermail">
+				<source>Email</source>
+			</trans-unit>
+			<trans-unit id="tx_rdcomments_domain_model_comment.comment">
+				<source>Comment</source>
+			</trans-unit>
+			<trans-unit id="tx_rdcomments_domain_model_comment.childcomment">
+				<source>Reply Comment</source>
+			</trans-unit>
+			<trans-unit id="tx_rdcomments_domain_model_comment.terms">
+				<source>Terms accepted</source>
+			</trans-unit>
+			<trans-unit id="tx_rdcomments_domain_model_comment.paramlink">
+				<source>Parameter Link to comments</source>
+			</trans-unit>
+			<trans-unit id="tx_rdcomments_domain_model_comment.comment">
+				<source>Comments</source>
+			</trans-unit>
+			<trans-unit id="tx_rdcomments_domain_model_comment.image">
+				<source>Image</source>
+			</trans-unit>
+			<trans-unit id="tx_rdcomments_domain_model_comment.feuserid">
+				<source>Website User Id</source>
+			</trans-unit>
+			<trans-unit id="tx_rdcomments_domain_model_comment.accesstoken">
+				<source>Comment Access token</source>		
+			</trans-unit>
+			<trans-unit id="tx_rdcomments_domain_model_comment.ParentComment">
+				<source>Parent comment</source>
+			</trans-unit>
+			<trans-unit id="tx_rdcomments_comment.name">
+				<source>RD Comments</source>
+			</trans-unit>
+			<trans-unit id="tx_rdcomments_comment.description">
+                <source>Engage with individual news pieces through comments</source>
+            </trans-unit>
+			<trans-unit id="tx_newscomment_domain_model_rating.crdate">
+				<source>Created Date</source>
+			</trans-unit>
+			<trans-unit id="TemplatePath">
+				<source>Template Path</source>
+			</trans-unit>
+			<trans-unit id="MailConfiguration">
+				<source>Mail Configuration</source>
+			</trans-unit>
+			<trans-unit id="CommentConfiguration">
+				<source>Comment Configuration</source>
+			</trans-unit>
+			<trans-unit id="CssJsIncludation">
+				<source>Css/Js Includation</source>
+			</trans-unit>
+			<trans-unit id="mainConfiguration">
+				<source>[Plugin] Main Configuration</source>
+			</trans-unit>
+			<trans-unit id="addbootstrapCss">
+				<source>Bootstarp Css</source>
+			</trans-unit>
+			<trans-unit id="addstyleCss">
+                <source>Default Style Css</source>
+            </trans-unit>
+            <trans-unit id="addfontAwesomeCss">
+                <source>Font Awesome Css</source>
+            </trans-unit>
+            <trans-unit id="addCustomJS">
+                <source>Custom JS</source>
+            </trans-unit>
+            <trans-unit id="addjqueryMinJS">
+                <source>Add Jquery Min JS</source>
+            </trans-unit>
+			<trans-unit id="addjqueryMinJS.v2">
+                <source>v2.x</source>
+            </trans-unit>
+			<trans-unit id="addjqueryMinJS.v3">
+                <source>v3.x</source>
+            </trans-unit>
+			<trans-unit id="dateFormat">
+				<source>Set Datetime format</source>
+			</trans-unit>
+			<trans-unit id="flexform.dateFormat">
+				<source>Date Format</source>
+			</trans-unit>
+			<trans-unit id="flexform.dateFormat.0">
+				<source>F j, Y (May 26, 2017)</source>
+			</trans-unit>
+			<trans-unit id="flexform.dateFormat.1">
+				<source>Y-m-d (2017-05-26)</source>
+			</trans-unit>
+			<trans-unit id="flexform.dateFormat.2">
+				<source>m/d/Y (05/26/2017)</source>
+			</trans-unit>
+			<trans-unit id="flexform.dateFormat.3">
+				<source>d/m/Y (26/05/2017)</source>
+			</trans-unit>
+			<trans-unit id="flexform.dateFormat.4">
+				<source>d.m.Y (26.05.2017)</source>
+			</trans-unit>
+			<trans-unit id="flexform.timeFormat.0">
+				<source>g:i a (11:36 am)</source>
+			</trans-unit>
+			<trans-unit id="flexform.timeFormat.1">
+				<source>g:i A (11:36 AM)</source>
+			</trans-unit>
+			<trans-unit id="flexform.timeFormat.2">
+				<source>H:i (11:36)</source>
+			</trans-unit>
+			<trans-unit id="flexform.timeFormat">
+				<source>Time Format</source>
+			</trans-unit>
+			<trans-unit id="termsRequired">
+				<source>Terms required</source>
+			</trans-unit>
+			<trans-unit id="termsTypolinkParameter">
+				<source>Terms typolink parameter</source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

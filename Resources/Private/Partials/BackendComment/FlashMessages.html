@@ -1,0 +1,48 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      data-namespace-typo3-fluid="true">
+
+<div class="flash-messages-container">
+    <f:flashMessages as="flashMessages">
+        <div class="flash-messages-wrapper">
+            <f:for each="{flashMessages}" as="flashMessage">
+                <f:switch expression="{flashMessage.severity}">
+                    <f:case value="OK">
+                        <div class="alert alert-success" role="alert">
+                            <div class="alert-header">
+                                <i class="fas fa-check-circle alert-icon"></i>
+                                <h4>{flashMessage.title -> f:format.htmlspecialchars()}</h4>
+                            </div>
+                            <p>{flashMessage.message -> f:sanitize.html()}</p>
+                        </div>
+                    </f:case>
+                    <f:case value="WARNING">
+                        <div class="alert alert-warning" role="alert">
+                            <div class="alert-header">
+                                <i class="fas fa-exclamation-triangle alert-icon"></i>
+                                <h4>{flashMessage.title -> f:format.htmlspecialchars()}</h4>
+                                <button class="toggle-warning" aria-expanded="false" aria-controls="warning-details-{flashMessage.uid}">
+                                    <i class="fas fa-chevron-down warning-toggle-icon"></i>
+                                </button>
+                            </div>
+                            <p>{flashMessage.message -> f:sanitize.html()}</p>
+                            <div class="warning-details" id="warning-details-{flashMessage.uid}" style="display: none;">
+                                <p>{f:translate(key: 'LLL:EXT:rd_comments/Resources/Private/Language/locallang.xlf:warningDetails')}</p>
+                            </div>
+                        </div>
+                    </f:case>
+                    <f:defaultCase>
+                        <div class="alert alert-info" role="alert">
+                            <div class="alert-header">
+                                <i class="fas fa-info-circle alert-icon"></i>
+                                <h4>{flashMessage.title -> f:format.htmlspecialchars()}</h4>
+                            </div>
+                            <p>{flashMessage.message -> f:sanitize.html()}</p>
+                        </div>
+                    </f:defaultCase>
+                </f:switch>
+            </f:for>
+        </div>
+    </f:flashMessages>
+</div>
+
+</html>

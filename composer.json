@@ -1,0 +1,43 @@
+{
+  "name": "remotedevs/rd-comments",
+  "type": "typo3-cms-extension",
+  "description": "Advanced comment system for TYPO3 News extension with nested replies and backend management",
+  "license": "GPL-2.0-or-later",
+  "authors": [
+    {
+      "name": "Abhay Rathod",
+      "role": "Developer"
+    },
+    {
+      "name": "karan anjara",
+      "role": "Developer"
+    }
+  ],
+  "support": {
+    "issues": "https://github.com/karanremotedevs/Comments/issues"
+  },
+  "require": {
+    "php": "^7.4 || ^8.0 || ^8.1 || ^8.2",
+    "typo3/cms-core": "^11.5",
+    "georgringer/news": "^9.1 || ^10.0 || ^11.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "RemoteDevs\\RdComments\\": "Classes/"
+    } 
+  },
+  "replace": {
+    "typo3-ter/rd_comments": "self.version"
+  },
+  "config": {
+    "vendor-dir": ".Build/vendor",
+    "bin-dir": ".Build/bin"
+  },
+  "extra": {
+    "typo3/cms": {
+      "cms-package-dir": "{$vendor-dir}/typo3/cms",
+      "web-dir": ".Build/public",
+      "extension-key": "rd_comments"
+    }
+  }
+}
