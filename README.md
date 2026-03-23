@@ -35,5 +35,5 @@ This extension allows frontend users to add comments and replies to News records
 Install the extension via Composer:
 
 ```bash
-composer remotedevs/rd-comments
+composer require remotedevs/rd-comments
 # remotedevs-comments
