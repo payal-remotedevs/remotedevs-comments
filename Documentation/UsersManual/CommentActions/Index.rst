@@ -39,7 +39,7 @@ Behavior Details
 Visual Example
 --------------
 
-.. image:: ../Images/UsersManual/CommentActions.png
+.. image:: /Images/UsersManual/CommentActions.png
    :alt: Action buttons in RD Comments backend
    :class: shadow mb-4
    :width: 100%
@@ -54,7 +54,7 @@ Flash Message Notification
 
 After a comment (and its replies) are deleted, the RD Comments module displays a confirmation message at the top of the screen.
 
-.. image:: ../Images/UsersManual/FlashMessage.png
+.. image:: /Images/UsersManual/FlashMessage.png
    :alt: Flash message shown after successful comment deletion
    :class: shadow mb-4
    :width: 100%
