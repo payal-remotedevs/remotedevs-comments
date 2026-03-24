@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<guides xmlns="https://docs.typo3.org/ns/guides">
+
+    <guide>
+        <title>Introduction</title>
+        <file>Introduction/Index.rst</file>
+    </guide>
+
+    <guide>
+        <title>Quick Start</title>
+        <file>QuickStart/Index.rst</file>
+    </guide>
+
+    <guide>
+        <title>Installation</title>
+        <file>QuickStart/Installation.rst</file>
+    </guide>
+
+    <guide>
+        <title>Configuration</title>
+        <file>QuickStart/Configuration.rst</file>
+    </guide>
+
+    <guide>
+        <title>Frontend Rendering</title>
+        <file>QuickStart/FrontendRendering.rst</file>
+    </guide>
+
+    <guide>
+        <title>Create Records</title>
+        <file>QuickStart/CreateRecords.rst</file>
+    </guide>
+
+    <guide>
+        <title>User Manual</title>
+        <file>UsersManual/Index.rst</file>
+    </guide>
+
+    <guide>
+        <title>Comment Threading</title>
+        <file>UsersManual/CommentThreading/Index.rst</file>
+    </guide>
+
+    <guide>
+        <title>Comment Actions</title>
+        <file>UsersManual/CommentActions/Index.rst</file>
+    </guide>
+
+    <guide>
+        <title>Comments List (Readonly)</title>
+        <file>UsersManual/CommentsListReadonly/Index.rst</file>
+    </guide>
+
+    <guide>
+        <title>RD Comments Module</title>
+        <file>UsersManual/RdCommentsModule/Index.rst</file>
+    </guide>
+
+    <guide>
+        <title>Administration</title>
+        <file>Administration/Index.rst</file>
+    </guide>
+
+    <guide>
+        <title>Developer Notes</title>
+        <file>DeveloperNotes/Index.rst</file>
+    </guide>
+
+    <guide>
+        <title>Support</title>
+        <file>Support/Index.rst</file>
+    </guide>
+
+</guides>
