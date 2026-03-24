@@ -19,7 +19,7 @@ Initial state (no comments)
 
 When there are no comments associated with any news records, the module will display `No news items found with comments`. It confirms that the module is working but no data has been submitted yet.
 
-.. image:: ../Images/UsersManual/NoCommentsView.png
+.. image:: /Images/UsersManual/NoCommentsView.png
    :alt: Empty RD Comments module view
    :class: shadow mb-4
    :width: 100%
@@ -31,7 +31,7 @@ Commented state (with data)
 
 When comments exist, the module displays a structured list of news records that contain comments. Each news record section can be expanded to view associated comments.
 
-.. image:: ../Images/UsersManual/WithCommentsView.png
+.. image:: /Images/UsersManual/WithCommentsView.png
    :alt: RD Comments module view with threaded comments
    :class: shadow mb-4
    :width: 100%
