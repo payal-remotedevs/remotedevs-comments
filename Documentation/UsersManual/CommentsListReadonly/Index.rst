@@ -39,7 +39,7 @@ Unlike the RD Comments module, the List module does **not provide threaded inter
 - Hidden comments are not rendered on the frontend and **do not appear** in the RD Comments module view.
 - The comment remains in the database and can be **restored** by simply unchecking the "hidden" box.
 
-.. image:: ../Images/UsersManual/ListModuleComments.png
+.. image:: /Images/UsersManual/ListModuleComments.png
    :alt: Comment records shown in the TYPO3 List module with visibility toggle
    :class: shadow mb-4
    :width: 100%
@@ -54,7 +54,7 @@ Displayed Fields
 
 The List module view shows key details of each comment:
 
-.. image:: ../Images/UsersManual/commentdetails.png
+.. image:: /Images/UsersManual/commentdetails.png
    :alt: The List module view for RD Comments showing comment details
    :class: shadow mb-4
    :width: 100%
@@ -72,7 +72,7 @@ When a root comment (i.e., not a reply) is selected in the List module, the syst
 
 This gives administrators a complete view of the discussion thread without requiring navigation to the RD Comments module.
 
-.. image:: ../Images/UsersManual/ReadonlyRepliesInListModule.png
+.. image:: /Images/UsersManual/ReadonlyRepliesInListModule.png
    :alt: Nested replies shown beneath a root comment in read-only List module view
    :class: shadow mb-4
    :width: 100%
