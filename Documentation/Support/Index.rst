@@ -13,7 +13,7 @@ If you need help using or extending the **rd_comments** extension, or if you’d
 
 You can report bugs, request features, or contribute to the codebase via GitHub:
 
-🔗 https://github.com/remote-devs/rd_comments
+🔗 https://github.com/payal-remotedevs/remotedevs-comments/issues
 
 Please check the existing issues before opening a new one.
 
