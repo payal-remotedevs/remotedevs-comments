@@ -69,7 +69,7 @@ Visual Threading Example
 
 Below is a real screenshot of how threaded comments are displayed inside the backend module:
 
-.. image:: ../Images/UsersManual/CommentThreading.png
+.. image:: /Images/UsersManual/CommentThreading.png
    :alt: Example of threaded comment structure in RD Comments module
    :class: shadow mb-4
    :width: 100%
