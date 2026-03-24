@@ -83,7 +83,7 @@ Add the RD Comments plugin to show the comment thread and form.
 
 #. On the same **News Detail** page, add another content element: :guilabel:`RD Comments > Comments`
 
-.. image:: /Images/CreateRecords/SelectCommentStorage.png
+.. image:: /Images/CreateRecords/StorageSelection.png
    :alt: Select Comment Storage Folder
    :width: 600px
    :class: with-shadow
