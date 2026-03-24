@@ -1,74 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<guides xmlns="https://docs.typo3.org/ns/guides">
-
-    <guide>
-        <title>Introduction</title>
-        <file>Introduction/Index.rst</file>
-    </guide>
-
-    <guide>
-        <title>Quick Start</title>
-        <file>QuickStart/Index.rst</file>
-    </guide>
-
-    <guide>
-        <title>Installation</title>
-        <file>QuickStart/Installation.rst</file>
-    </guide>
-
-    <guide>
-        <title>Configuration</title>
-        <file>QuickStart/Configuration.rst</file>
-    </guide>
-
-    <guide>
-        <title>Frontend Rendering</title>
-        <file>QuickStart/FrontendRendering.rst</file>
-    </guide>
-
-    <guide>
-        <title>Create Records</title>
-        <file>QuickStart/CreateRecords.rst</file>
-    </guide>
-
-    <guide>
-        <title>User Manual</title>
-        <file>UsersManual/Index.rst</file>
-    </guide>
-
-    <guide>
-        <title>Comment Threading</title>
-        <file>UsersManual/CommentThreading/Index.rst</file>
-    </guide>
-
-    <guide>
-        <title>Comment Actions</title>
-        <file>UsersManual/CommentActions/Index.rst</file>
-    </guide>
-
-    <guide>
-        <title>Comments List (Readonly)</title>
-        <file>UsersManual/CommentsListReadonly/Index.rst</file>
-    </guide>
-
-    <guide>
-        <title>RD Comments Module</title>
-        <file>UsersManual/RdCommentsModule/Index.rst</file>
-    </guide>
-
-    <guide>
-        <title>Administration</title>
-        <file>Administration/Index.rst</file>
-    </guide>
-
-    <guide>
-        <title>Developer Notes</title>
-        <file>DeveloperNotes/Index.rst</file>
-    </guide>
-
-    <guide>
-        <title>Support</title>
-        <file>Support/Index.rst</file>
-    </guide>
-
+<guides xmlns="https://www.phpdoc.org/guides" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="https://www.phpdoc.org/guides ../vendor/phpdocumentor/guides-cli/resources/schema/guides.xsd"
+        links-are-relative="true"
+        default-code-language="php"
+>
+<extension class="\T3Docs\Typo3DocsTheme\DependencyInjection\Typo3DocsThemeExtension"
+               project-home="https://extensions.typo3.org/extension/rd_comments/"
+               project-contact="https://typo3.slack.com/"
+               project-repository="https://github.com/payal-remotedevs/remotedevs-comments"
+               project-issues="https://github.com/payal-remotedevs/remotedevs-comments/issues"
+               project-discussions="https://github.com/payal-remotedevs/remotedevs-comments/discussions"
+               edit-on-github-branch="main"
+               edit-on-github="payal-remotedevs/remotedevs-comments"
+               typo3-core-preferred="13.4"
+               interlink-shortcode="payal-remotedevs/remotedevs-comments"
+    />
+ 
+    <project title="RemoteDevs Comments"
+             version="1.0.0"
+             copyright="2026 RemoteDevs &amp; Contributors"
+    />
+ 
+    <inventory id="t3coreapi" url="https://docs.typo3.org/m/typo3/reference-coreapi/main/en-us/"/>
+<inventory id="t3viewhelper" url="https://docs.typo3.org/other/typo3/view-helper-reference/main/en-us/"/>
 </guides>
