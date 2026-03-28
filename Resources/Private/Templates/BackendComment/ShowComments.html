@@ -1,0 +1,162 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
+<f:layout name="Default" />
+
+<f:section name="main">
+    <script src="{f:uri.resource(path: 'js/rd_backend.js', extensionName: 'RdComments')}"></script>
+    <link rel="stylesheet" href="{f:uri.resource(path: 'css/rd_backend.css', extensionName: 'RdComments')}" />
+
+    <div class="container" data-article-id="{selectedArticle.uid}">
+        <div class="header">
+            <button id="back-btn" class="back-btn">
+                <f:translate key="LLL:EXT:rd_comments/Resources/Private/Language/locallang.xlf:back" />
+            </button>
+
+        <h1 id="page-title">
+            <f:if condition="{selectedArticle}">
+                <f:then>
+                    <f:if condition="{f:count(subject: selectedArticle.title) > 100}">
+                        <f:then>
+                            {selectedArticle.title -> f:format.crop(maxCharacters: 100, append: '...')}
+                        </f:then>
+                        <f:else>
+                            {selectedArticle.title}
+                        </f:else>
+                    </f:if>
+                </f:then>
+                <f:else>
+                    <f:translate key="LLL:EXT:rd_comments/Resources/Private/Language/locallang.xlf:backendheader" />
+                </f:else>
+            </f:if>
+        </h1>
+            <div class="search-filter">
+                <input type="text" id="search-input" class="search-input"
+                    placeholder="{f:translate(key: 'LLL:EXT:rd_comments/Resources/Private/Language/locallang.xlf:searchcomments')}" />
+                <select id="filter-select" class="filter-select">
+                    <option value="all"><f:translate key="LLL:EXT:rd_comments/Resources/Private/Language/locallang.xlf:filterAll" /></option>
+                    <option value="pinned"><f:translate key="LLL:EXT:rd_comments/Resources/Private/Language/locallang.xlf:filterPinned" /></option>
+                    <option value="recent"><f:translate key="LLL:EXT:rd_comments/Resources/Private/Language/locallang.xlf:filterRecent" /></option>
+                </select>
+            </div>
+        </div>
+            <div class="scrollable-content">
+                <f:if condition="{showReplies}">
+                    <div id="sub-comments-section" class="sub-comments-section">
+                        <f:for each="{commentsByNews.{selectedArticle.uid}.comments}" as="comment">
+                            <f:if condition="{comment.uid} == {selectedCommentUid}">
+                                <div class="comment-card parent-comment" data-comment-id="{comment.uid}">
+                                    <div class="comment-header">
+                                        <div class="avatar">
+                                            {comment.username -> f:format.crop(maxCharacters: 2, append: '') -> f:format.case(mode: 'upper')}
+                                        </div>
+                                        <div style="flex: 1;">
+                                            <div class="author">{comment.username}</div>
+                                            <div class="timestamp">{comment.crdate}</div>
+                                        </div>
+                                        <div class="like-count">
+                                            <span class="like-icon" aria-hidden="true"></span>
+                                            <span>{comment.likes}</span>
+                                        </div>
+                                    </div>
+                                    <div class="comment-content">{comment.description}</div>
+                                    <div class="actions">
+                                        <button 
+                                            class="action-btn btn-danger"
+                                            data-comment-uid="{comment.uid}"
+                                            data-ajax-url="{f:uri.action(action: 'ajaxDelete', controller: 'BackendComment', extensionName: 'RdComments', arguments: {commentUid: comment.uid})}"
+                                            title="{f:translate(key: 'LLL:EXT:rd_comments/Resources/Private/Language/locallang.xlf:delete')}">
+                                            <span class="delete-icon" aria-hidden="true"></span>
+                                        </button>
+                                        <f:if condition="{comment.is_top_level}">
+                                            <button 
+                                                class="action-btn btn-pin {f:if(condition: '{comment.pinned}', then: 'pinned')}"
+                                                data-comment-uid="{comment.uid}"
+                                                data-ajax-url="{f:uri.action(action: 'ajaxPin', controller: 'BackendComment', extensionName: 'RdComments', arguments: {commentUid: comment.uid})}"
+                                                title="{f:if(condition: '{comment.pinned}', then: '{f:translate(key: \'LLL:EXT:rd_comments/Resources/Private/Language/locallang.xlf:unpin\')}', else: '{f:translate(key: \'LLL:EXT:rd_comments/Resources/Private/Language/locallang.xlf:pin\')}')}">
+                                                <span class="pin-icon"></span>
+                                            </button>
+                                        </f:if>
+                                        <f:if condition="{comment.replies}">
+                                            <a href="{f:uri.action(
+                                                action: 'showOnlyReplies',
+                                                controller: 'BackendComment',
+                                                extensionName: 'RdComments',
+                                                arguments: {newsUid: comment.newsuid, commentUid: comment.uid}
+                                            )}" class="reply-btn" title="{f:translate(key: 'LLL:EXT:rd_comments/Resources/Private/Language/locallang.xlf:viewReplies')}">
+                                                <span class="reply-icon" aria-hidden="true"></span>
+                                                <span class="reply-count">(<f:count>{comment.replies}</f:count>)</span>
+                                            </a>
+                                        </f:if>
+                                    </div>
+                                </div>
+
+                                <div class="sub-comments-grid" id="replies-{comment.uid}">
+                                    <f:render section="RenderRecursiveReplies" arguments="{replies: comment.replies, newsUid: selectedArticle.uid}" />
+                                </div>
+                            </f:if>
+                        </f:for>
+                    </div>
+                <f:else>
+                    <div class="comments-section">
+                        <div id="comments-grid" class="comments-grid show">
+                            <f:for each="{commentsByNews.{selectedArticle.uid}.comments}" as="comment">
+                                <f:render section="RenderComment" arguments="{comment: comment}" />
+                            </f:for>
+                        </div>
+                    </div>
+                </f:else>
+                </f:if>
+            </div>
+        </div>
+</f:section>
+
+<f:section name="RenderComment">
+    <div class="comment-card" data-comment-id="{comment.uid}">
+        <div class="comment-header">
+            <div class="avatar">
+                {comment.username -> f:format.crop(maxCharacters: 2, append: '') -> f:format.case(mode: 'upper')}
+            </div>
+            <div style="flex: 1;">
+                <div class="author">{comment.username}</div>
+                <div class="timestamp">{comment.crdate}</div>
+            </div>
+            <div class="like-count">
+                <span class="like-icon" aria-hidden="true"></span>
+                <span>{comment.likes}</span>
+            </div>
+        </div>
+
+        <div class="comment-content">{comment.description}</div>
+
+        <div class="actions">
+            <button 
+                class="action-btn btn-danger"
+                data-comment-uid="{comment.uid}"
+                data-ajax-url="{f:uri.action(action: 'ajaxDelete', controller: 'BackendComment', extensionName: 'RdComments', arguments: {commentUid: comment.uid})}"
+                title="{f:translate(key: 'LLL:EXT:rd_comments/Resources/Private/Language/locallang.xlf:delete')}">
+                <span class="delete-icon" aria-hidden="true"></span>
+            </button>
+            <f:if condition="{comment.is_top_level}">
+                <button 
+                    class="action-btn btn-pin {f:if(condition: '{comment.pinned}', then: 'pinned')}"
+                    data-comment-uid="{comment.uid}"
+                    data-ajax-url="{f:uri.action(action: 'ajaxPin', controller: 'BackendComment', extensionName: 'RdComments', arguments: {commentUid: comment.uid})}"
+                    title="{f:if(condition: '{comment.pinned}', then: '{f:translate(key: \'LLL:EXT:rd_comments/Resources/Private/Language/locallang.xlf:unpin\')}', else: '{f:translate(key: \'LLL:EXT:rd_comments/Resources/Private/Language/locallang.xlf:pin\')}')}">
+                    <span class="pin-icon"></span>
+                </button>
+            </f:if>
+            <f:if condition="{comment.replies}">
+                <a href="{f:uri.action(
+                        action: 'showOnlyReplies',
+                        controller: 'BackendComment',
+                        extensionName: 'RdComments',
+                        arguments: {newsUid: comment.newsuid, commentUid: comment.uid}
+                    )}" class="reply-btn" title="{f:translate(key: 'LLL:EXT:rd_comments/Resources/Private/Language/locallang.xlf:viewReplies')}">
+                    <span class="reply-icon" aria-hidden="true"></span>
+                    <span class="reply-count">(<f:count>{comment.replies}</f:count>)</span>
+                </a>
+            </f:if>
+        </div>
+    </div>
+</f:section>composer require georgringer/news
+
+</html>

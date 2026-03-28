@@ -1,0 +1,34 @@
+# customsubcategory=100=LLL:EXT:rd_comments/Resources/Private/Language/locallang_db.xlf:CommentConfiguration
+
+
+plugin.tx_rdcomments_rdcomment {
+    view {
+        # cat=plugin.tx_rdcomments_rdcomment/file; type=string; label=Path to template root (FE)
+        templateRootPath = EXT:rd_comments/Resources/Private/Templates/
+        # cat=plugin.tx_rdcomments_rdcomment/file; type=string; label=Path to template partials (FE)
+        partialRootPath = EXT:rd_comments/Resources/Private/Partials/
+        # cat=plugin.tx_rdcomments_rdcomment/file; type=string; label=Path to template layouts (FE)
+        layoutRootPath = EXT:rd_comments/Resources/Private/Layouts/
+    }
+    // persistence {
+    //     # cat=plugin.tx_rdcomments_rdcomment/100/06; type=string; label=Default storage PID
+    //     // storagePid =
+    // }
+
+    settings {
+        // # cat=plugin.tx_rdcomments_rdcomment/100/01; type=options[F j Y,Y-m-d,m/d/Y,d/m/Y,d.m.Y]; label=LLL:EXT:rd_comments/Resources/Private/Language/locallang_db.xlf:flexform.dateFormat
+        // dateFormat = F j Y
+
+        // # cat=plugin.tx_rdcomments_rdcomment/100/02; type=options[g:i a,g:i A,H:i]; label=LLL:EXT:rd_comments/Resources/Private/Language/locallang_db.xlf:flexform.timeFormat
+        // timeFormat = g:i a
+
+        # cat=plugin.tx_rdcomments_rdcomment/100/03; type=boolean; label=LLL:EXT:rd_comments/Resources/Private/Language/locallang_db.xlf:termsRequired
+        termsRequired = 0
+
+        # cat=plugin.tx_rdcomments_rdcomment/100/04; type=string; label=LLL:EXT:rd_comments/Resources/Private/Language/locallang_db.xlf:termsTypolinkParameter
+        termsTypolinkParameter = https://www.remotedevs.in/
+
+        // # cat=plugin.tx_rdcomments_rdcomment/100/05; type=boolean; label=LLL:EXT:rd_comments/Resources/Private/Language/locallang_db.xlf:flexform.like
+        // likeDisable = 0
+    }
+}

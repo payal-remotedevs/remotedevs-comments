@@ -1,0 +1,27 @@
+.. This file is included by all documentation pages
+.. It defines common roles and substitutions used across the docs
+
+.. role:: php(code)
+   :language: php
+
+.. role:: typoscript(code)
+   :language: typoscript
+
+.. role:: yaml(code)
+   :language: yaml
+
+.. role:: sql(code)
+   :language: sql
+
+.. role:: bash(code)
+   :language: bash
+
+.. role:: js(code)
+   :language: javascript
+
+.. role:: html(code)
+   :language: html
+
+.. |extension| replace:: rd_comments
+.. |vendor| replace:: RemoteDevs
+.. |typo3| replace:: TYPO3

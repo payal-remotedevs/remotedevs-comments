@@ -1,0 +1,82 @@
+<f:layout name="Default" />
+
+<f:section name="main">
+    <f:flashMessages />
+    <f:if condition="{newsID}">
+        <div class="rd-news-comment-wrapper">
+            <div class="rd-headline">
+                <h2>
+                    <f:translate key="CommentsandResponses" />
+                </h2>
+            </div>
+
+            <div class="active-comment-form" id="form-comment-view">
+                <f:form name="newComment" action="create" object="{newComment}"
+                    arguments="{newComment : newComment, Storagepid: '{pid}', feUser: '{settings.feUser}'}"
+                    id="comment-form" class="comment-form" addQueryString="1" pageType='1730800496'>
+                    <a href="javascript:;" class="comment-form-close-btn" id="comment-form-close-btn"
+                        style="display: none;">&times;</a>
+                    <div class="controls">
+                        <f:render partial="Comment/FormFields" arguments="{_all}" />
+                    </div>
+                </f:form>
+            </div>
+            <div class="comments-container"
+                data-like-url="{f:uri.action( action: 'like', controller: 'Comment', extensionName: 'RemotedevsComments', pluginName: 'Comment', absolute: true, pageType: 1730800496 )}">
+                <div class="messages thanksmsg" style="display: none;">
+                    <div class="rd-alert rd-alert-success">
+                        <f:translate key="form.thankyouMessage" />
+                    </div>
+                </div>
+                <div class="messages erorr" style="display: none;">
+                    <div class="rd-alert rd-alert">
+                        <f:translate key="error.alreadyLiked" />
+                    </div>
+                </div>
+                <div class="messages erorr" style="display: none;">
+                    <div class="rd-alert rd-alert-success">
+                        <f:translate key="error.notLikedYet" />
+                    </div>
+                </div>
+                <f:if condition="{comments}">
+                    <f:then>
+                        <div class="rd-headline">
+                            <h2>
+                                <f:translate key="tx_comments_domain_model_comments.lblcomments" /> :
+                            </h2>
+                        </div>
+                    </f:then>
+                    <f:else>
+                        <h5>
+                            <f:translate key='tx_comments_domain_model_comments.nocommentsfound' />
+                        </h5>
+                    </f:else>
+                </f:if>
+                <div class="rd-filter">
+                    <label for="searchBox">Search Comments:</label>
+                    <input type="text" id="searchBox" placeholder="Type to search..." onkeyup="searchComments()" />
+                    <label for="mostLikedBtn">Filter:</label>
+                    <button type="button" id="mostLikedBtn" onclick="filterMostLiked()" class="most-liked-btn">
+                        Most Liked
+                    </button>
+                </div>
+                <ul class="comments-list" id="comments-list">
+                    <f:for each="{comments}" as="comment" iteration="i">
+                        <li id="comments-{comment.uid}"
+                            class="comment <f:if condition='{i.index} >= 3'>hidden-comment</f:if>">
+                            <f:render partial="Comment/Comment" arguments="{_all}" />
+                        </li>
+                    </f:for>
+                </ul>
+                <f:if condition="{comments -> f:count()} > 3">
+                    <div class="rd-readmore-wrapper">
+                        <button id="read-more-comments" class="read-more-btn">
+                            <f:translate key="tx_comments_domain_model_comments.readmore"
+                                default="Read More Comments" />
+                        </button>
+                    </div>
+                </f:if>
+            </div>
+        </div>
+    </f:if>
+</f:section>

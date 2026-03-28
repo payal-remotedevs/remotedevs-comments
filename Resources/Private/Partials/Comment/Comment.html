@@ -1,0 +1,99 @@
+<div class="comment-main-level">
+    <div class="messages thanksmsg-{comment.uid}" style="display: none;">
+        <div class="rd-alert rd-alert-success">
+            <f:translate key="form.thankyouMessage" />
+        </div>
+    </div>
+    <div class="comment-avatar">
+        <f:image src="EXT:rd_comments/Resources/Public/Icons/team-image.png" alt="user" height="100" width="100" />
+    </div>
+    <div class="comment-box">
+        <div class="comment-head">
+            <div class="comment-username">
+                <strong>{comment.username}</strong>
+                <span class="text-muted">
+                    <f:if condition="{settings.custom} && {settings.customdate} && {settings.customtime}">
+                        <f:then>
+                            <f:format.date format="{settings.customdate}">{comment.crdate}</f:format.date>
+                            <f:translate key='at' />
+                            <f:format.date format="{settings.customtime}">{comment.crdate}</f:format.date>
+                        </f:then>
+                        <f:else>
+                            <f:format.date format="{settings.dateFormat}">{comment.crdate}</f:format.date>
+                            <f:translate key='at' />
+                            <f:format.date format="{settings.timeFormat}">{comment.crdate}</f:format.date>
+                        </f:else>
+                    </f:if>
+                </span>
+                <f:if condition="{comment.pinned}">
+                    <span class="pinned-icon">
+                        <i class="icon-custom rd-icon-pinned"></i>
+                    </span>
+                </f:if>
+            </div>
+        </div>
+        <div class="comment-content">
+            <f:format.raw>{comment.description}</f:format.raw>
+        </div>
+        <div class="comment-footer" id="{comment.uid}">
+            <a href="javascript:;" class="comment-btn reply">
+                <i class="icon-custom rd-icon-reply"></i>
+                <f:translate key='tx_comments_domain_model_comments.replylabel' />
+            </a>
+
+            <f:if condition="{settings.like} == 1">
+
+            </f:if>
+            <f:if condition="{settings.like} == 0">
+                <a href="javascript:;" class="comment-btn like" data-comment-id="{comment.uid}"
+                    data-liked="{comment.likedByCurrentUser}">
+                    <f:if condition="{comment.likedByCurrentUser}">
+                        <f:then><i class="icon-custom rd-icon-liked"></i></f:then>
+                        <f:else><i class="icon-custom rd-icon-like"></i></f:else>
+                    </f:if>
+                    <f:translate key="tx_comments_domain_model_comments.likelabel" />
+                    <span class="rd-comment-likes-count">{comment.likes -> f:or(alternative: '0')}</span>
+                </a>
+            </f:if>
+
+            <f:if condition="{settings.like} == 2">
+                <f:variable name="showLike" value="1" />
+                <f:for each="{selectedNewsIds}" as="selectedId">
+                    <f:if condition="{selectedId} == {newsID}">
+                        <f:variable name="showLike" value="0" />
+                    </f:if>
+                </f:for>
+
+                <f:if condition="{showLike}">
+                    <a href="javascript:;" class="comment-btn like" data-comment-id="{comment.uid}"
+                        data-liked="{comment.likedByCurrentUser}">
+                        <f:if condition="{comment.likedByCurrentUser}">
+                            <f:then><i class="icon-custom rd-icon-liked"></i></f:then>
+                            <f:else><i class="icon-custom rd-icon-like"></i></f:else>
+                        </f:if>
+                        <f:translate key="tx_comments_domain_model_comments.likelabel" />
+                        <span class="rd-comment-likes-count">{comment.likes -> f:or(alternative: '0')}</span>
+                    </a>
+                </f:if>
+            </f:if>
+
+            <f:if condition="{comment.childcomment}">
+                <a href="javascript:;" class="comment-btn show" data-comment-id="{comment.uid}">
+                    <f:translate key="tx_comments_domain_model_comments.showcommentslabel" />
+                    ({comment.childcomment -> f:count()})
+                </a>
+            </f:if>
+            <div class="reply-form" id="reply-form-{comment.uid}"></div>
+        </div>
+    </div>
+</div>
+<f:if condition="{comment.childcomment}">
+    <f:for each="{comment.childcomment}" as="prcomment">
+        <ul class="comments-list reply-list" data-id="children-{prcomment.uid}">
+            <li id="comments-{prcomment.uid}" class="comment" data-parent-username="{comment.username}">
+                <f:render partial="Comment/Comment"
+                    arguments="{comment: prcomment, Image: Image, settings: settings, newsID: newsID, selectedNewsIds: selectedNewsIds }" />
+            </li>
+        </ul>
+    </f:for>
+</f:if>

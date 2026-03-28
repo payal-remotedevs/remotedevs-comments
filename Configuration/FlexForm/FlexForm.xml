@@ -1,0 +1,126 @@
+<T3DataStructure>
+	<meta>
+		<langDisable>1</langDisable>
+	</meta>
+	<sheets>
+		<!--
+			################################
+			  SHEET General Settings
+			################################
+		-->
+		<sDEF>
+			<ROOT>
+				<sheetTitle>LLL:EXT:rd_comments/Resources/Private/Language/locallang_db.xlf:flexform.setting</sheetTitle>
+				<type>array</type>
+				<el>
+					<settings.custom>
+							<label>LLL:EXT:rd_comments/Resources/Private/Language/locallang_db.xlf:flexform.custom</label>
+		                    <onChange>reload</onChange>
+		                    <config>
+		                        <type>check</type>
+		                    </config>
+					</settings.custom>
+					<settings.customdate>
+							<label>LLL:EXT:rd_comments/Resources/Private/Language/locallang_db.xlf:flexform.customDateFormat</label>
+							<displayCond>FIELD:settings.custom:=:1</displayCond>
+		                    <config>
+		                        <type>input</type>
+		                        <eval>trim,required</eval>
+		                    </config>
+					</settings.customdate>
+					<settings.customtime>
+							<label>LLL:EXT:rd_comments/Resources/Private/Language/locallang_db.xlf:flexform.customTimeFormat</label>
+							<displayCond>FIELD:settings.custom:=:1</displayCond>
+		                    <config>
+		                        <type>input</type>
+		                        <eval>trim,required</eval>
+		                    </config>
+					</settings.customtime>
+					<settings.dateFormat>
+							<label>LLL:EXT:rd_comments/Resources/Private/Language/locallang_db.xlf:flexform.dateFormat</label>
+							<displayCond>FIELD:settings.custom:!=:1</displayCond>
+		                    <config>
+		                        <type>radio</type>
+								<items>
+									<numIndex index="0">
+									  <numIndex index="0">LLL:EXT:rd_comments/Resources/Private/Language/locallang_db.xlf:flexform.dateFormat.0</numIndex>
+									  <numIndex index="1">F j, Y</numIndex>
+									</numIndex>
+									<numIndex index="1">
+									  <numIndex index="0">LLL:EXT:rd_comments/Resources/Private/Language/locallang_db.xlf:flexform.dateFormat.1</numIndex>
+									  <numIndex index="1">Y-m-d</numIndex>
+									</numIndex>
+									<numIndex index="2">
+									  <numIndex index="0">LLL:EXT:rd_comments/Resources/Private/Language/locallang_db.xlf:flexform.dateFormat.2</numIndex>
+									  <numIndex index="1">m/d/Y</numIndex>
+									</numIndex>
+									<numIndex index="3">
+									  <numIndex index="0">LLL:EXT:rd_comments/Resources/Private/Language/locallang_db.xlf:flexform.dateFormat.3</numIndex>
+									  <numIndex index="1">d/m/Y</numIndex>
+									</numIndex>
+								</items>
+								<default>F j, Y</default>
+	                    	</config>
+					</settings.dateFormat>
+					<settings.timeFormat>
+							<label>LLL:EXT:rd_comments/Resources/Private/Language/locallang_db.xlf:flexform.timeFormat</label>
+							<displayCond>FIELD:settings.custom:!=:1</displayCond>
+		                    <config>
+		                        <type>radio</type>
+								<items>
+									<numIndex index="0">
+									  <numIndex index="0">LLL:EXT:rd_comments/Resources/Private/Language/locallang_db.xlf:flexform.timeFormat.0</numIndex>
+									  <numIndex index="1">g:i a</numIndex>
+									</numIndex>
+									<numIndex index="1">
+									  <numIndex index="0">LLL:EXT:rd_comments/Resources/Private/Language/locallang_db.xlf:flexform.timeFormat.1</numIndex>
+									  <numIndex index="1">g:i A</numIndex>
+									</numIndex>
+									<numIndex index="2">
+									  <numIndex index="0">LLL:EXT:rd_comments/Resources/Private/Language/locallang_db.xlf:flexform.timeFormat.2</numIndex>
+									  <numIndex index="1">H:i</numIndex>
+									</numIndex>
+								</items>
+								<default>g:i a</default>
+		                    </config>
+					</settings.timeFormat>
+					<settings.like>
+						<label>LLL:EXT:rd_comments/Resources/Private/Language/locallang_db.xlf:flexform.like</label>
+						<onChange>reload</onChange>
+						<config>
+							<type>radio</type>
+							<items>
+								<numIndex index="0">
+									<numIndex index="0">LLL:EXT:rd_comments/Resources/Private/Language/locallang_db.xlf:flexform.like.0</numIndex>
+									<numIndex index="1">0</numIndex>
+								</numIndex>
+								<numIndex index="1">
+									<numIndex index="0">LLL:EXT:rd_comments/Resources/Private/Language/locallang_db.xlf:flexform.like.1</numIndex>
+									<numIndex index="1">1</numIndex>
+								</numIndex>
+								<numIndex index="2">
+									<numIndex index="0">LLL:EXT:rd_comments/Resources/Private/Language/locallang_db.xlf:flexform.like.2</numIndex>
+									<numIndex index="1">2</numIndex>
+								</numIndex>
+							</items>
+							<default>0</default>
+						</config>
+					</settings.like>
+					<settings.news>
+						<label>LLL:EXT:rd_comments/Resources/Private/Language/locallang_db.xlf:flexform.news</label>
+						<displayCond>FIELD:settings.like:=:2</displayCond>
+						<config>
+							<type>select</type>
+							<renderType>selectMultipleSideBySide</renderType>
+							<foreign_table>tx_news_domain_model_news</foreign_table>
+							<minitems>0</minitems>
+							<maxitems>5</maxitems>
+							<size>5</size>
+						</config>
+						<default>0</default>
+					</settings.news>
+				</el>
+			</ROOT>
+		</sDEF>
+	</sheets>
+</T3DataStructure>

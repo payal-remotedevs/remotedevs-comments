@@ -1,0 +1,61 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
+<f:layout name="Default" />
+
+<f:section name="main">
+    <script src="{f:uri.resource(path: 'js/rd_backend.js', extensionName: 'RdComments')}"></script>
+    <link rel="stylesheet" href="{f:uri.resource(path: 'css/rd_backend.css', extensionName: 'RdComments')}" />
+
+    <div class="container">
+    <div class="header">
+        <button id="back-btn" class="back-btn" style="display: none;">
+            <f:translate key="LLL:EXT:rd_comments/Resources/Private/Language/locallang.xlf:back" />
+        </button>
+
+        <h1 id="page-title">
+            <f:translate key="LLL:EXT:rd_comments/Resources/Private/Language/locallang.xlf:backendheader" />
+        </h1>
+
+        <div class="search-filter">
+            <input type="text" id="search-input" class="search-input "
+                placeholder="{f:translate(key: 'LLL:EXT:rd_comments/Resources/Private/Language/locallang.xlf:searchNews')}" />
+        </div>
+    </div>
+    <div class="scrollable-content">
+        
+        <div id="news-section">
+            <f:if condition="{newsList}">
+                <f:then>
+                    <div class="news-grid">
+                        <f:for each="{newsList}" as="newsItem">
+                            <div class="news-card" data-news-id="{newsItem.uid}">
+                                <div class="news-meta">
+                                    <span class="news-id">#{newsItem.uid}</span>
+                                    <span class="news-date">
+                                        <f:format.date format="d M Y, H:i">{newsItem.date}</f:format.date>
+                                    </span>
+                                </div>
+                                <h3 class="news-title">{newsItem.title -> f:format.htmlspecialchars()}</h3>
+                                <div class="news-excerpt">
+                                    {newsItem.teaser -> f:format.stripTags() -> f:format.crop(maxCharacters: 300)}
+                                </div>
+                                <div class="reply-section">
+                                    <a href="{f:uri.action(action: 'showComments', controller: 'BackendComment', extensionName: 'RdComments', arguments: {article: newsItem.uid})}" class="reply-btn">
+                                        <f:translate key="LLL:EXT:rd_comments/Resources/Private/Language/locallang.xlf:viewReplies" />(<f:count>{commentsByNews.{newsItem.uid}.comments}</f:count>)
+                                    </a>
+                                </div>
+                            </div>
+                        </f:for>
+                    </div>
+                </f:then>
+                <f:else>
+                    <p style="text-align: center; color: #666; margin-top: 40px;">
+                        <f:translate key="LLL:EXT:rd_comments/Resources/Private/Language/locallang.xlf:nonews" />
+                    </p>
+                </f:else>
+            </f:if>
+        </div>
+    </div>
+    </div>
+
+</f:section>
+</html>
